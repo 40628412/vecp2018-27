@@ -52,65 +52,65 @@ end
 
 -- x, y 為中心,  r 為半徑, angle 旋轉角,  solid 空心或實心,  color 顏色
 function star(x, y, r, angle, solid, color)
-    angle = angle or 0
-    solid = solid or false
-    color = color or "#f00"
-    -- 以 x, y 為圓心, 計算五個外點
-    local deg = math.pi/180
-    -- 圓心到水平線距離
-    local a = r*math.cos(72*deg)
-    -- a 頂點向右到內點距離
-    local b = (r*math.cos(72*deg)/math.cos(36*deg))*math.sin(36*deg)
-    -- 利用畢氏定理求內點半徑
-    rin = math.sqrt(a*a + b*b)
-    -- 查驗 a, b 與 rin
-    --print(a, b, rin)
-    if (solid) then
-        ctx:beginPath()
-    end
-    for i = 0, 4 do
-        xout = (x + r*math.sin((360/5)*deg*i+angle*deg))
-        yout = (y + r*math.cos((360/5)*deg*i+angle*deg))
-        -- 外點增量 + 1
-        xout2 = x + r*math.sin((360/5)*deg*(i+1)+angle*deg)
-        yout2 = y + r*math.cos((360/5)*deg*(i+1)+angle*deg)
-        xin = x + rin*math.sin((360/5)*deg*i+36*deg+angle*deg)
-        yin = y + rin*math.cos((360/5)*deg*i+36*deg+angle*deg)
-        -- 查驗外點與內點座標
-        --print(xout, yout, xin, yin)
-        if (solid) then
-            -- 填色
-            if (i==0) then
-                ctx:moveTo(xout, yout)
-                ctx:lineTo(xin, yin)
-                ctx:lineTo(xout2, yout2)
-            else
-                ctx:lineTo(xin, yin)
-                ctx:lineTo(xout2, yout2)
-            end
-        else
-            -- 空心
-            draw_line(xout, yout, xin, yin, color)
-            -- 畫空心五芒星, 無關畫線次序, 若實心則與畫線次序有關
-            draw_line(xout2, yout2, xin, yin, color)
-        end
-    end
-    
-    if (solid) then
-        ctx.fillStyle = color
-        ctx:fill()
-    end
+angle = angle or 0
+solid = solid or false
+color = color or "#f00"
+-- 以 x, y 為圓心, 計算五個外點
+local deg = math.pi/180
+-- 圓心到水平線距離
+local a = r*math.cos(72*deg)
+-- a 頂點向右到內點距離
+local b = (r*math.cos(72*deg)/math.cos(36*deg))*math.sin(36*deg)
+-- 利用畢氏定理求內點半徑
+rin = math.sqrt(a*a + b*b)
+-- 查驗 a, b 與 rin
+--print(a, b, rin)
+if (solid) then
+ctx:beginPath()
+end
+for i = 0, 4 do
+xout = (x + r*math.sin((360/5)*deg*i+angle*deg))
+yout = (y + r*math.cos((360/5)*deg*i+angle*deg))
+-- 外點增量 + 1
+xout2 = x + r*math.sin((360/5)*deg*(i+1)+angle*deg)
+yout2 = y + r*math.cos((360/5)*deg*(i+1)+angle*deg)
+xin = x + rin*math.sin((360/5)*deg*i+36*deg+angle*deg)
+yin = y + rin*math.cos((360/5)*deg*i+36*deg+angle*deg)
+-- 查驗外點與內點座標
+--print(xout, yout, xin, yin)
+if (solid) then
+-- 填色
+if (i==0) then
+ctx:moveTo(xout, yout)
+ctx:lineTo(xin, yin)
+ctx:lineTo(xout2, yout2)
+else
+ctx:lineTo(xin, yin)
+ctx:lineTo(xout2, yout2)
+end
+else
+-- 空心
+draw_line(xout, yout, xin, yin, color)
+-- 畫空心五芒星, 無關畫線次序, 若實心則與畫線次序有關
+draw_line(xout2, yout2, xin, yin, color)
+end
+end
+
+if (solid) then
+ctx.fillStyle = color
+ctx:fill()
+end
 end
 
 --star(300, 300, 50, 0, false, "#000")
 for i = 0, 5 do
-    for j = 0, 4 do
-        star(13+42*i, 11+35*j, 9, 35, true, "#fff")
-    end
+for j = 0, 4 do
+star(13+42*i, 11+35*j, 9, 35, true, "#fff")
 end
-    
-    for i = 0, 4 do
-    for j = 0, 3 do
-        star(33+42*i,28+35*j, 9, 35, true, "#fff")
-    end
+end
+
+for i = 0, 4 do
+for j = 0, 3 do
+star(33+42*i,28+35*j, 9, 35, true, "#fff")
+end
 end
