@@ -24,22 +24,22 @@ ctx.fillStyle='rgb(0, 0, 150)'
 ctx:fillRect(0, 0, flag_w*2/5, flag_h*7/13)
 --畫白第一條線
 ctx.fillStyle='rgb(999, 999, 999)'
-ctx:fillRect(240,30, flag_w,flag_h/13)
+ctx:fillRect(240,22, flag_w,flag_h/13)
 --畫白第二條線
 ctx.fillStyle='rgb(999, 999, 999)'
-ctx:fillRect(240,80, flag_w, flag_h/13)
+ctx:fillRect(240,66, flag_w, flag_h/13)
 --畫白第三條線
 ctx.fillStyle='rgb(999, 999, 999)'
-ctx:fillRect(240,137, flag_w, flag_h/13)
+ctx:fillRect(240,110, flag_w, flag_h/13)
 --畫白第四條線
 ctx.fillStyle='rgb(999, 999, 999)'
-ctx:fillRect(0,200, flag_w, flag_h/13)
+ctx:fillRect(0,160, flag_w, flag_h/13)
 --畫白第五條線
 ctx.fillStyle='rgb(999, 999, 999)'
-ctx:fillRect(0,265, flag_w, flag_h/13)
+ctx:fillRect(0,210, flag_w, flag_h/13)
 --畫白第六條線
 ctx.fillStyle='rgb(999, 999, 999)'
-ctx:fillRect(0,330, flag_w, flag_h/13)
+ctx:fillRect(0,255, flag_w, flag_h/13)
 -- 準備在 canvas 中繪圖
 function draw_line(x1, y1, x2, y2, color)
 color = color or "#fff"
@@ -114,4 +114,3 @@ end
         star(33+42*i,28+35*j, 9, 35, true, "#fff")
     end
 end
-
